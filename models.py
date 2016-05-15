@@ -18,6 +18,16 @@ class Perfil(object):
 	def curtir(self):
 		self.__curtidas += 1
 
+class Perfil_Vip(Perfil):
+	'Classe padrão para perfis de usuários vip'
+
+	def __init__(self, nome, telefone, empresa, apelido):
+		super(Perfil_Vip, self).__init__(nome, telefone, empresa)
+		self.apelido = apelido
+
+	def obter_creditos(self):
+		return super(Perfil_Vip, self).obter_curtidas() * 10.0
+
 
 class Data(object):
 	'Classe para representar uma Data(sem hora) e imprimir uma data formatada.'
