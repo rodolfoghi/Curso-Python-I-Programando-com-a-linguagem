@@ -18,10 +18,23 @@ class Perfil(object):
 	def curtir(self):
 		self.__curtidas += 1
 
+	@classmethod
+	def gerar_perfis(classe, nome_arquivo):
+		arquivo = open(nome_arquivo, 'r')
+		perfis = []
+		
+		for linha in arquivo:
+			valores = linha.split(',')
+			perfis.append(classe(*valores))
+		
+		arquivo.close()
+		
+		return perfis
+
 class Perfil_Vip(Perfil):
 	'Classe padrão para perfis de usuários vip'
 
-	def __init__(self, nome, telefone, empresa, apelido):
+	def __init__(self, nome, telefone, empresa, apelido=''):
 		super(Perfil_Vip, self).__init__(nome, telefone, empresa)
 		self.apelido = apelido
 
