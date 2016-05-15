@@ -25,6 +25,10 @@ class Perfil(object):
 		
 		for linha in arquivo:
 			valores = linha.split(',')
+
+			if (len(valores) is not 3):
+				raise Perfil_Error('Uma linha no arquivo deve ter 3 valores')
+
 			perfis.append(classe(*valores))
 		
 		arquivo.close()
@@ -40,6 +44,14 @@ class Perfil_Vip(Perfil):
 
 	def obter_creditos(self):
 		return super(Perfil_Vip, self).obter_curtidas() * 10.0
+
+
+class Perfil_Error(Exception):
+	def __init__(slef, mensagem):
+		self.mensagem = mensagem
+
+	def __str__(self):
+		return repr(self.mensagem)
 
 
 class Data(object):
